@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 using UnityEditor.SceneManagement;
 
-public class NewPlayModeTest {
+using Helper;
+using System;
 
-    [Test]
-    public void NewEditModeTestSimplePasses()
-    {
-        // Use the Assert class to test conditions.
-    }
+public class NewEditModeTest {
+
+	[Test]
+	public void NewEditModeTestSimplePasses() {
+		// Use the Assert class to test conditions.
+	}
 
     [Test]
     public void BasicTest()
@@ -25,7 +28,7 @@ public class NewPlayModeTest {
     {
         GameObject gameObject = new GameObject("test");
 
-        Assert.Throws<MissingComponentException>(() => gameObject.GetComponent<Rigidbody>().velocity = Vector3.one);
+        Assert.Throws<MissingComponentException>( () => gameObject.GetComponent<Rigidbody>().velocity = Vector3.one);
     }
 
     [SetUp]
@@ -34,8 +37,8 @@ public class NewPlayModeTest {
         EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
     }
 
-    [UnityTest]
-    public IEnumerator UserInfoPlayMode()
+    [Test]
+    public void UserInfo()
     {
         var playerUsername = "Deniel2019";
         var playerPassword = "1s2s3s4s5s6s7s8";
@@ -43,22 +46,11 @@ public class NewPlayModeTest {
         var loggedUser = playerUsername + playerPassword;
 
         Assert.That(loggedUser, Is.EqualTo(playerUsername + playerPassword));
-
-        yield return null;
     }
 
-
-    [UnityTest]
-	public IEnumerator NewPlayModeTestWithEnumeratorPasses() {
-		// Use the Assert class to test conditions.
-		// yield to skip a frame
-		yield return null;
-	}
-
-    [UnityTest]
-    public IEnumerator  LeveltestingPlaymode()
+    [Test]
+    public void Leveltesting()
     {
-        //var user = new NewPlayModeTest();
         var score = 100;
         var correct = 10;
         var objects = 10;
@@ -66,8 +58,12 @@ public class NewPlayModeTest {
 
 
         Assert.That(score, Is.EqualTo(totalscore));
-
-        yield return null;
     }
 
+
+
+    [UnityTest]
+	public IEnumerator NewEditModeTestWithEnumeratorPasses() {
+		yield return null;
+	}
 }
